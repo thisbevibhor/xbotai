@@ -1,0 +1,111 @@
+.history-page {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.history-header {
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.history-header .mobile-menu-btn {
+    position: absolute;
+    left: 1.5rem;
+}
+
+.history-content {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.filter-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.filter-section h2 {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+}
+
+.filter-dropdown select {
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: var(--border-width) solid #ccc;
+    font-family: var(--font-secondary);
+    font-size: 1rem;
+}
+
+.no-chats-msg {
+    text-align: center;
+    color: #777;
+    font-style: italic;
+    margin-top: 2rem;
+}
+
+.saved-chats-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.saved-chat-card {
+    background-color: var(--text-white);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.chat-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.chat-rating {
+    color: #FFD700;
+    letter-spacing: 2px;
+}
+
+.chat-feedback-text {
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+    background-color: var(--primary-3);
+    padding: 0.8rem;
+    border-radius: 8px;
+}
+
+.divider {
+    border: none;
+    border-top: var(--border-width) solid #eee;
+    margin-bottom: 1.5rem;
+}
+
+.chat-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    /* limit height of individual saved chat if they are too long */
+    max-height: 500px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .filter-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+}
