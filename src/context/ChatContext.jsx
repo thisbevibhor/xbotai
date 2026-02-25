@@ -5,13 +5,13 @@ export const ChatContext = createContext();
 export const ChatProvider = ({ children }) => {
   // Current active chat session messages
   const [currentChat, setCurrentChat] = useState([]);
-  
+
   // All saved conversations
   const [savedChats, setSavedChats] = useState(() => {
     const saved = localStorage.getItem('xbotai_chats');
     return saved ? JSON.parse(saved) : [];
   });
-  
+
   // Mobile sidebar toggle state
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -25,25 +25,32 @@ export const ChatProvider = ({ children }) => {
   };
 
   const updateMessageFeedback = (messageId, feedbackType) => {
-    setCurrentChat(prev => prev.map(msg => 
+    setCurrentChat(prev => prev.map(msg =>
       msg.id === messageId ? { ...msg, feedback: feedbackType } : msg
     ));
   };
-  
-  const saveCurrentConversation = (rating, feedbackText) => {
-    if (currentChat.length === 0) return;
-    
+
+  const saveCurrentConversation = () => {
+    if (currentChat.length === 0) return null;
+
     const newSavedChat = {
       id: Date.now().toString(),
       date: new Date().toISOString(),
       messages: currentChat,
-      rating: rating,
-      subjectiveFeedback: feedbackText
+      rating: 0,
+      subjectiveFeedback: ''
     };
-    
+
     setSavedChats(prev => [newSavedChat, ...prev]);
     // Clear current chat after saving
     setCurrentChat([]);
+    return newSavedChat.id;
+  };
+
+  const updateChatFeedback = (chatId, rating, feedbackText) => {
+    setSavedChats(prev => prev.map(chat =>
+      chat.id === chatId ? { ...chat, rating, subjectiveFeedback: feedbackText } : chat
+    ));
   };
 
   const clearCurrentChat = () => {
@@ -65,6 +72,7 @@ export const ChatProvider = ({ children }) => {
     addMessageToCurrent,
     updateMessageFeedback,
     saveCurrentConversation,
+    updateChatFeedback,
     clearCurrentChat,
     toggleSidebar,
     closeSidebar

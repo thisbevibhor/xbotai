@@ -14,10 +14,12 @@ export default function Home() {
         addMessageToCurrent,
         updateMessageFeedback,
         saveCurrentConversation,
+        updateChatFeedback,
         toggleSidebar
     } = useContext(ChatContext);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [activeFeedbackChatId, setActiveFeedbackChatId] = useState(null);
     const scrollRef = useRef(null);
 
     // Scroll to bottom on new message
@@ -41,9 +43,8 @@ export default function Home() {
 
         // Simulate AI response delay
         setTimeout(() => {
-            const match = sampleData.find(
-                item => item.question.toLowerCase().replace(/[.,!?]/g, '') === text.toLowerCase().trim().replace(/[.,!?]/g, '')
-            );
+            const normalizeText = (t) => t.toLowerCase().replace(/[^a-z0-9]/g, '');
+            const match = sampleData.find(item => normalizeText(item.question) === normalizeText(text));
             const responseText = match ? match.response : "Sorry, Did not understand your query!";
 
             const aiTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -64,6 +65,8 @@ export default function Home() {
 
     const handleSaveClick = () => {
         if (currentChat.length > 0) {
+            const chatId = saveCurrentConversation();
+            setActiveFeedbackChatId(chatId);
             setIsModalOpen(true);
         } else {
             alert("No conversation to save. Chat first!");
@@ -71,8 +74,11 @@ export default function Home() {
     };
 
     const handleModalSave = (rating, feedbackText) => {
-        saveCurrentConversation(rating, feedbackText);
+        if (activeFeedbackChatId) {
+            updateChatFeedback(activeFeedbackChatId, rating, feedbackText);
+        }
         setIsModalOpen(false);
+        setActiveFeedbackChatId(null);
     };
 
     return (
