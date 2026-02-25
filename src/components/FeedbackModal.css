@@ -1,0 +1,112 @@
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: var(--secondary-2);
+    /* white */
+    width: 90%;
+    max-width: 500px;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    animation: modalIn 0.3s ease-out;
+}
+
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.modal-title {
+    font-family: var(--font-primary);
+    color: var(--text-dark);
+    font-size: 1.5rem;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #777;
+}
+
+.feedback-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.rating-container {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.star {
+    font-size: 2.5rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.1s ease;
+}
+
+.star.filled {
+    color: #FFD700;
+    /* gold star */
+}
+
+.textarea-container {
+    width: 100%;
+}
+
+.feedback-textarea {
+    width: 100%;
+    padding: 1rem;
+    border: var(--border-width) solid #ccc;
+    border-radius: 8px;
+    font-family: var(--font-secondary);
+    font-size: 1rem;
+    resize: vertical;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-save-modal {
+    background-color: var(--primary-1);
+    color: var(--text-white);
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-family: var(--font-primary);
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.btn-save-modal:hover {
+    opacity: 0.9;
+}

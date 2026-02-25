@@ -1,0 +1,85 @@
+.sidebar {
+    width: 260px;
+    background-color: var(--secondary-2);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+    z-index: 100;
+    border-right: var(--border-width) solid var(--secondary-1);
+    /* Optional separator */
+}
+
+.sidebar-header {
+    padding: 1rem;
+    background-color: var(--secondary-1);
+    /* Example background for header or New chat section */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.new-chat-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-family: var(--font-primary);
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.edit-icon {
+    font-size: 1.2rem;
+}
+
+.sidebar-links {
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.history-link {
+    display: block;
+    text-decoration: none;
+    background-color: var(--secondary-1);
+    color: var(--text-dark);
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    text-align: center;
+    transition: opacity 0.2s ease;
+}
+
+.history-link:hover {
+    opacity: 0.9;
+}
+
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 90;
+}
+
+/* Base styles for layout are moved to App.css / index.css */
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translateX(-100%);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .sidebar-overlay.open {
+        display: block;
+    }
+}

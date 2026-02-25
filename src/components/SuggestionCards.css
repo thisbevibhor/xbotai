@@ -1,0 +1,52 @@
+.suggestions-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    max-width: 900px;
+    width: 100%;
+}
+
+.suggestion-card {
+    background-color: var(--text-white);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: var(--border-width) solid #e0e0e0;
+}
+
+.suggestion-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-family: var(--font-primary);
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.card-subtitle {
+    font-family: var(--font-secondary);
+    color: #777;
+    /* or text-light-purple if preferred */
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0 1rem;
+    }
+}
