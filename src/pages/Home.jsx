@@ -41,7 +41,9 @@ export default function Home() {
 
         // Simulate AI response delay
         setTimeout(() => {
-            const match = sampleData.find(item => item.question.toLowerCase() === text.toLowerCase().trim());
+            const match = sampleData.find(
+                item => item.question.toLowerCase().replace(/[.,!?]/g, '') === text.toLowerCase().trim().replace(/[.,!?]/g, '')
+            );
             const responseText = match ? match.response : "Sorry, Did not understand your query!";
 
             const aiTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
